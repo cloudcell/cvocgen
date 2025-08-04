@@ -2,7 +2,7 @@
 
 This repository contains a C-based vocabulary generator (cvocgen) for molecular representations (SMILES and SELFIES) to be used with Python-based APETokenizer. It implements BPE (Byte Pair Encoding) algorithms optimized for chemical structures, focusing solely on efficient vocabulary generation.
 
-The preliminary measurements show that cvocgen is about 3 times faster than the Python-based APETokenizer for vocabulary generation.
+The preliminary measurements show that cvocgen is over 3 times faster than the Python-based APETokenizer for vocabulary generation.
 
 The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository](https://github.com/mikemayuare/apetokenizer), with additional enhancements and modifications. It has been forked to make tests for cvocgen and some enhancements to the code.
 
@@ -12,7 +12,6 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
   - `ape_tokenizer.py`: Main tokenizer implementation
   - `README.md`: Documentation for the Python tokenizer
   - `LICENCE`: License information for the Python tokenizer
-  - `tokenizer_output/`: Directory containing sample tokenizer outputs
 
 - **src/**: C implementation of the BPE vocabulary generator
   - `cvocgen.c`: Main C source file
@@ -25,7 +24,7 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
   - `cvocgen`: Compiled C vocabulary generator executable
 
 - **data/**: Sample data files for testing and training
-  - Contains various test files in SMILES and SELFIES formats
+  - Contains test data in a packed file in SELFIES format
 
 - **tests/**: Test scripts and comparison utilities
   - `compare_tokenizers.py`: Script to compare outputs from both tokenizers
@@ -56,8 +55,8 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/cloudcell/cvocgen.git
+   cd cvocgen
    ```
 
 2. Install Python dependencies:
@@ -86,7 +85,8 @@ make
 cd ..
 
 # Run with default parameters
-./bin/cvocgen -i input_file.txt -n 10 -o output_directory
+(you might have to unpack the test file first)
+./bin/cvocgen -i data/test.selfies.unique.txt -n 10 -o ./output_directory
 
 # Options:
 # -i, --input: Input file path
@@ -135,7 +135,8 @@ This will:
 
 ## Known Issues
 
-- APETokenizer has unintuitive frequency calculation where merged token frequencies can be higher than individual token frequencies, which affects BPE merge decisions
+- APETokenizer has a specific frequency calculation where merged token frequencies can be higher than individual token frequencies, which affects BPE merge decisions
+- cvocgen has only been tested with SELFIES format
 
 ## License
 
