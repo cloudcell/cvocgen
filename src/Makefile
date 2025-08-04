@@ -8,10 +8,14 @@ SOURCES=cvocgen.c
 # The name of your executable
 EXECUTABLE=cvocgen
 
-all: $(EXECUTABLE)
+# Output directory
+BIN_DIR=../bin
 
-$(EXECUTABLE): $(SOURCES)
-	$(CC) $(CFLAGS) -o $(EXECUTABLE) $(SOURCES) $(LDFLAGS)
+all: $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR)/$(EXECUTABLE): $(SOURCES)
+	mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) -o $(BIN_DIR)/$(EXECUTABLE) $(SOURCES) $(LDFLAGS)
 
 clean:
-	rm -f $(EXECUTABLE)
+	rm -f $(BIN_DIR)/$(EXECUTABLE)

@@ -12,4 +12,4 @@ cvocgen/cvocgen
 !cvocgen.c
 !cvocgen.h
 !requirements.txt
-bin/
+bin/cvocgen

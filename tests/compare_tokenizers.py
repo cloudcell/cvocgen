@@ -75,7 +75,7 @@ def run_cvocgen(input_file, output_dir, num_merges=1):
     
     # Run cvocgen command with output directory
     cmd = [
-        "./cvocgen/cvocgen",
+        "./bin/cvocgen",
         "-f", input_file,
         "-n", str(num_merges),
         "-t", "selfies",
