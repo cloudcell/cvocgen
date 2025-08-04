@@ -1,0 +1,15 @@
+venv
+__pycache__
+*.pyc
+*.json
+*.tsv
+*.txt
+*.o
+*.so
+*.full
+*.slf
+cvocgen/cvocgen
+!cvocgen.c
+!cvocgen.h
+!requirements.txt
+bin/
