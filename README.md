@@ -1,6 +1,6 @@
-# Molecular Tokenizer Project
+# Fast C-Based Vocabulary Generator Project
 
-This repository contains a Python-based tokenizer (APETokenizer) and a C-based vocabulary generator (cvocgen) for molecular representations (SMILES and SELFIES). Both implement BPE (Byte Pair Encoding) algorithms optimized for chemical structures, but serve different purposes: APETokenizer is a full tokenizer with encoding/decoding capabilities, while cvocgen focuses solely on efficient vocabulary generation.
+This repository contains a C-based vocabulary generator (cvocgen) for molecular representations (SMILES and SELFIES). It implements BPE (Byte Pair Encoding) algorithms optimized for chemical structures, focusing solely on efficient vocabulary generation.
 
 The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository](https://github.com/mikemayuare/apetokenizer), with additional enhancements and modifications.
 
@@ -12,14 +12,15 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
   - `LICENCE`: License information for the Python tokenizer
   - `tokenizer_output/`: Directory containing sample tokenizer outputs
 
-- **cvocgen/**: C implementation of the BPE vocabulary generator
+- **src/**: C implementation of the BPE vocabulary generator
   - `cvocgen.c`: Main C source file
   - `cvocgen.h`: Header file with type definitions and function prototypes
   - `cvocgen_io.h`: I/O utilities for the vocabulary generator
   - `progress_bar.h`: Progress bar implementation
-  - `Makefile`: Build configuration
-  - `test.sh`: Test script
-  - `README.md`: Documentation for the C vocabulary generator
+  - `Makefile`: Build configuration that compiles to ../bin/
+
+- **bin/**: Directory for compiled executables
+  - `cvocgen`: Compiled C vocabulary generator executable
 
 - **data/**: Sample data files for testing and training
   - Contains various test files in SMILES and SELFIES formats
@@ -33,14 +34,6 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
 
 ## Features
 
-### APETokenizer (Python)
-
-- Hugging Face `transformers` compatible
-- Tokenizes both SMILES and SELFIES representations
-- Supports special tokens (`<pad>`, `<s>`, `</s>`, `<unk>`, `<mask>`)
-- Vocabulary management, tokenization, padding, and encoding
-- Persistent shared memory for improved multiprocessing performance
-
 ### cvocgen (C Vocabulary Generator)
 
 - Fast C implementation of BPE for molecular vocabulary generation
@@ -48,7 +41,6 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
 - Configurable output directory for all generated files
 - JSON and plain text vocabulary output formats
 - Progress bar visualization for training
-- Focuses solely on vocabulary generation, not tokenization
 
 ## Installation
 
@@ -73,43 +65,26 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
 
 3. Build the C tokenizer:
    ```bash
-   cd cvocgen
+   cd src
    make
    cd ..
    ```
+   This will compile the executable to the `./bin/` directory.
 
 ## Usage
 
-### APETokenizer
-
-```python
-from apetokenizer.ape_tokenizer import APETokenizer
-
-# Initialize the tokenizer
-tokenizer = APETokenizer()
-
-# Train on a corpus
-corpus = ["CCO", "C=O", "CCC", "CCN"]
-tokenizer.train(corpus, max_vocab_size=5000, min_freq_for_merge=2000, max_merges=10)
-
-# Save the vocabulary
-tokenizer.save_vocabulary("vocab.json")
-
-# Tokenize a molecule
-smiles = "CCO"
-encoded = tokenizer(smiles, add_special_tokens=False)
-print(encoded)
-```
-
 ### cvocgen
+
+The C-based vocabulary generator can be used as follows:
 
 ```bash
 # Build the tokenizer
-cd cvocgen
+cd src
 make
+cd ..
 
 # Run with default parameters
-./cvocgen -i input_file.txt -n 10 -o output_directory
+./bin/cvocgen -i input_file.txt -n 10 -o output_directory
 
 # Options:
 # -i, --input: Input file path
@@ -117,13 +92,10 @@ make
 # -o, --output: Output directory for vocabulary files
 ```
 
-### Comparing Tokenizers
+### Running Tests
 
 ```bash
-# Compare both tokenizers with the same input
-python tests/compare_tokenizers.py --input-file data/test.selfies.unique.txt --output-dir ./comparison_output --merges 10
-
-# Or use the convenience script
+# Run the comparison test script
 ./test.sh --merges 10 --output-dir ./comparison_output
 ```
 
@@ -132,7 +104,12 @@ python tests/compare_tokenizers.py --input-file data/test.selfies.unique.txt --o
 ### C Tokenizer Tests
 
 ```bash
-cd cvocgen
+# Make sure the tokenizer is built first
+cd src
+make
+cd ..
+
+# Run the tests
 ./test.sh
 ```
 
