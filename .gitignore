@@ -13,3 +13,4 @@ cvocgen/cvocgen
 !cvocgen.h
 !requirements.txt
 bin/cvocgen
+*.png
