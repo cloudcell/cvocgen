@@ -135,8 +135,10 @@ This will:
 
 ## Known Issues / Solutions
 
+- cvocgen has only been tested with SELFIES format
 - APETokenizer has a specific frequency calculation where merged token frequencies can be higher than individual token frequencies, which affects BPE merge decisions (solution: use cvocgen for vocabulary generation and APETokenizer for encoding)
-- cvocgen has only been tested with SELFIES format 
+  <img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/7fabc137-8d14-40dd-b68e-6641d9e2e2a2" />
+
 
 ## License
 
