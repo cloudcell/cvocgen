@@ -132,6 +132,25 @@ This will:
 2. Compare their vocabularies and outputs
 3. Generate a detailed comparison report
 
+### Encoding Length Comparison Tests
+
+```bash
+python ./tests/check_encoded_length.py --merges 30 --sample-size 10000
+```
+
+This script:
+1. Generates vocabularies with both APETokenizer and cvocgen (with specified number of merges)
+2. Encodes the same test corpus using both vocabularies (using APETokenizer's encode function)
+3. Compares encoding lengths (min, max, average, median) between the two
+4. Generates a histogram visualization of encoding length distributions
+5. Outputs detailed statistics and total encoding length comparison
+
+Options:
+- `--merges`: Number of BPE merges to perform (default: 30)
+- `--input-file`: Path to input file (default: ./data/test.selfies.unique.txt)
+- `--output-dir`: Directory for output files (default: ./test_results)
+- `--sample-size`: Number of molecules to sample (default: all)
+
 
 ## Known Issues / Solutions
 
