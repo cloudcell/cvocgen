@@ -64,7 +64,7 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
    pip install -r requirements.txt
    ```
 
-3. Build the C tokenizer:
+3. Build the C vocabulary generator:
    ```bash
    cd src
    make
@@ -79,7 +79,7 @@ The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository]
 The C-based vocabulary generator can be used as follows:
 
 ```bash
-# Build the tokenizer
+# Build the vocabulary generator
 cd src
 make
 cd ..
@@ -103,10 +103,10 @@ cd ..
 
 ## Testing
 
-### C Tokenizer Tests
+### C Vocabulary Generator Tests
 
 ```bash
-# Make sure the tokenizer is built first
+# Make sure the vocabulary generator is built first
 cd src
 make
 cd ..
@@ -116,19 +116,19 @@ cd ..
 ```
 
 This will:
-1. Build the C tokenizer
+1. Build the C vocabulary generator
 2. Create sample input files in the tests directory
 3. Run BPE training with different merge counts
 4. Verify vocabulary files are created correctly
 
-### Tokenizer Comparison Tests
+### Vocabulary Generator Comparison Tests
 
 ```bash
 ./test.sh --merges 10 --output-dir ./test_output
 ```
 
 This will:
-1. Run both tokenizers on the same input
+1. Run both APETokenizer and cvocgen on the same input
 2. Compare their vocabularies and outputs
 3. Generate a detailed comparison report
 
