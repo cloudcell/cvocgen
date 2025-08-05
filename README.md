@@ -4,7 +4,7 @@ This repository contains a C-based vocabulary generator (cvocgen) for molecular 
 
 The preliminary measurements show that cvocgen is over 3 times faster than the Python-based APETokenizer for vocabulary generation.
 
-The APETokenizer is a fork from [Miguelangel Leon Mayuare's original repository](https://github.com/mikemayuare/apetokenizer), with additional enhancements and modifications. It has been forked to make tests for cvocgen and some enhancements to the code.
+The APETokenizer component is a fork from [Miguelangel Leon Mayuare's original repository](https://github.com/mikemayuare/apetokenizer), with additional enhancements and modifications. It has been forked to make tests for cvocgen and some enhancements to the code.
 
 ## Repository Structure
 
