@@ -1,3 +1,6 @@
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/17148ce3-5b52-4562-929d-066074a02bb6" />
+
+
 # Fast C-Based Vocabulary Generator Project
 
 This repository contains a C-based vocabulary generator (cvocgen) for molecular representations (SMILES and SELFIES) to be used with Python-based APETokenizer. It implements BPE (Byte Pair Encoding) algorithms optimized for chemical structures, focusing solely on efficient vocabulary generation.
