@@ -608,7 +608,7 @@ HashTable* train_bpe_from_file(const char* corpus_file, int num_merges) {
             break;
         }
         
-        printf("  Best pair: %s (frequency: %d)\n", best_pair, pair_count);
+        printf("  Merge %d/%d: Best pair: %s (frequency: %d)\n", i+1, num_merges, best_pair, pair_count);
         
         // Store the merge operation
         merges[merge_count++] = strdup(best_pair);
